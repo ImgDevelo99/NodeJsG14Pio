@@ -44,65 +44,96 @@
 // });
 
 //asincronismo : multiples tareas al mismo tiempo sin bloquear ningun flujo del programa
-function obtenerProducto(productoId){
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            console.log("obtener detalle del producto");
-            const producto = {id: productoId, nombre: "portatil", precio: 15000}
-            if(producto){
-                resolve(producto);
-            }else{
-                reject("producto no encontrado")
-            }
+// function obtenerProducto(productoId){
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             console.log("obtener detalle del producto");
+//             const producto = {id: productoId, nombre: "portatil", precio: 15000}
+//             if(producto){
+//                 resolve(producto);
+//             }else{
+//                 reject("producto no encontrado")
+//             }
 
-        }, 5000);
+//         }, 5000);// 5 segundos
+//     });
+// }
+// function verificarStock(producto){
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+            
+//         console.log("verificar producto:",producto.nombre)
+//         const enStock = Math.random() > 0.5
+//         if(enStock){
+//             resolve("producto en stock")
+//         }else{
+//             reject("producto fuera de stock")
+//         }
+//     },3000);
+// });
+// }
+
+// function confirmarCompra(producto) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             console.log("confirmar compra del producto",producto.nombre)
+//             resolve("compra con exito");
+//         }, 8000);
+// });
+// }
+
+// function realizarCompra(productoId){
+//     obtenerProducto(productoId)
+//     .then((producto) =>{
+//         return verificarStock(producto).then(() => producto)
+//     })
+//     .then((producto) => {
+//         return confirmarCompra(producto);
+//     })
+//     .catch((mensaje) =>{
+//         console.log(mensaje);
+
+//     })
+//     .catch((error) => {
+//         console.error("error durante la comrpa",error);
+//     })
+
+//     .finally(() => {
+//         console.log("proceso completado")
+//     });
+// }
+// realizarCompra(1)
+
+//----------------------------------------------------------------------------
+
+function prepararComida(pedido){
+    return new Promise((resolve, reject) => {
+        console.log("preparando el pedido.......");
+        setTimeout(() => {
+            if(pedido === "pizza"){
+                resolve("pedido esta listo");
+            }else{
+                reject("lo siento no tenemos el pedido");
+            }
+            
+            
+        }, 10000);
     });
 }
-function verificarStock(producto){
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            
-        console.log("verificar producto:",producto.nombre)
-        const enStock = Math.random() > 0.5
-        if(enStock){
-            resolve("producto en stock")
-        }else{
-            reject("producto fuera de stock")
-        }
-    },3000);
-});
-}
 
-function confirmarCompra(producto) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log("confirmar compra del producto",producto.nombre)
-            resolve("compra con exito");
-        }, 8000);
-});
-}
-
-function realizarCompra(productoId){
-    obtenerProducto(productoId)
-    .then((producto) =>{
-        return verificarStock(producto).then(() => producto)
-    })
-    .then((producto) => {
-        return confirmarCompra(producto);
-    })
-    .catch((mensaje) =>{
-        console.log(mensaje);
-
+//consumir la promesa
+prepararComida("hamburguesa")
+    .then((mensajeExitoso)=> {
+        console.log(mensajeExitoso);  // pedido exitoso
     })
     .catch((error) => {
-        console.error("error durante la comrpa",error);
+        console.log(error);  // hay un error en el pedido
     })
-
     .finally(() => {
-        console.log("proceso completado")
+        console.log("preparacion completa");
     });
-}
-realizarCompra(1)
+
+    //-------------------------------------------------------
 
 
 
