@@ -44,97 +44,117 @@
 // });
 
 //asincronismo : multiples tareas al mismo tiempo sin bloquear ningun flujo del programa
-// function obtenerProducto(productoId){
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             console.log("obtener detalle del producto");
-//             const producto = {id: productoId, nombre: "portatil", precio: 15000}
-//             if(producto){
-//                 resolve(producto);
-//             }else{
-//                 reject("producto no encontrado")
-//             }
-
-//         }, 5000);// 5 segundos
-//     });
-// }
-// function verificarStock(producto){
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-            
-//         console.log("verificar producto:",producto.nombre)
-//         const enStock = Math.random() > 0.5
-//         if(enStock){
-//             resolve("producto en stock")
-//         }else{
-//             reject("producto fuera de stock")
-//         }
-//     },3000);
-// });
-// }
-
-// function confirmarCompra(producto) {
-//     return new Promise((resolve) => {
-//         setTimeout(() => {
-//             console.log("confirmar compra del producto",producto.nombre)
-//             resolve("compra con exito");
-//         }, 8000);
-// });
-// }
-
-// function realizarCompra(productoId){
-//     obtenerProducto(productoId)
-//     .then((producto) =>{
-//         return verificarStock(producto).then(() => producto)
-//     })
-//     .then((producto) => {
-//         return confirmarCompra(producto);
-//     })
-//     .catch((mensaje) =>{
-//         console.log(mensaje);
-
-//     })
-//     .catch((error) => {
-//         console.error("error durante la comrpa",error);
-//     })
-
-//     .finally(() => {
-//         console.log("proceso completado")
-//     });
-// }
-// realizarCompra(1)
-
-//----------------------------------------------------------------------------
-
-function prepararComida(pedido){
+function obtenerProducto(productoId){
     return new Promise((resolve, reject) => {
-        console.log("preparando el pedido.......");
         setTimeout(() => {
-            if(pedido === "pizza"){
-                resolve("pedido esta listo");
+            console.log("obtener detalle del producto");
+            const producto = {id: productoId, nombre: "portatil", precio: 15000}
+            if(producto){
+                resolve(producto);
             }else{
-                reject("lo siento no tenemos el pedido");
+                reject("producto no encontrado")
             }
-            
-            
-        }, 10000);
+
+        }, 5000);// 5 segundos
     });
 }
+function verificarStock(producto){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            
+        console.log("verificar producto:",producto.nombre)
+        const enStock = Math.random() > 0.5
+        if(enStock){
+            resolve("producto en stock")
+        }else{
+            reject("producto fuera de stock")
+        }
+    },3000);
+});
+}
 
-//consumir la promesa
-prepararComida("hamburguesa")
-    .then((mensajeExitoso)=> {
-        console.log(mensajeExitoso);  // pedido exitoso
+function confirmarCompra(producto) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log("confirmar compra del producto",producto.nombre)
+            resolve("compra con exito");
+        }, 8000);
+});
+}
+
+function realizarCompra(productoId){
+    obtenerProducto(productoId)
+    .then((producto) =>{
+        return verificarStock(producto).then(() => producto)
+    })
+    .then((producto) => {
+        return confirmarCompra(producto);
+    })
+    .catch((mensaje) =>{
+        console.log(mensaje);
+
     })
     .catch((error) => {
-        console.log(error);  // hay un error en el pedido
+        console.error("error durante la comrpa",error);
     })
+
     .finally(() => {
-        console.log("preparacion completa");
+        console.log("proceso completado")
     });
+}
+realizarCompra(1)
+
+//----------------------------------------------------------------------------
+// console.log("inicio programa");//-----tarea 1
+// function prepararComida(pedido){
+//     return new Promise((resolve, reject) => {
+//         console.log("preparando el pedido.......");
+//         setTimeout(() => {
+//            if(pedido === "pizza"){
+//                 resolve("pedido esta listo");
+//             }else{
+//                 reject("lo siento no tenemos el pedido");
+//             }
+            
+            
+//         }, 10000);
+//     });
+// }
+// //consumir la promesa
+// prepararComida("pizza")
+//     .then((mensajeExitoso)=> {
+//         console.log(mensajeExitoso);  // pedido exitoso // tarea 5
+//     })
+//     .catch((error) => {
+//         console.log(error);  // hay un error en el pedido
+//     })
+//     .finally(() => {
+//         console.log("preparacion completa");
+//     });
+//     console.log("final programa"); //--- tarea2
+//     console.log("se ejecuto otra funcion programa");//.---tarea 3
+//     console.log("se ejecuto otra funcion programa");// tarea 4
 
     //-------------------------------------------------------
-
+    /*Enunciado:
+    Simulación de Préstamo de Libros en Línea
+    
+    Eres desarrollador de una plataforma de biblioteca en línea. El sistema necesita ofrecer las siguientes funcionalidades:
+    
+    Buscar un libro por título: Cuando el usuario ingresa el título de un libro, el sistema debe buscar en la base de datos de la biblioteca.
+     Este proceso debe simularse con una promesa que tarde unos segundos en resolverse.
+    
+    Verificar disponibilidad del libro: Después de encontrar el libro, el sistema debe verificar si está disponible para préstamo.
+     Esto también debe realizarse de forma asíncrona, con una probabilidad del 50% de que el libro esté disponible o no.
+    
+    Realizar el préstamo: Si el libro está disponible, el sistema procederá a realizar el préstamo. 
+    Esta operación debe confirmarse después de unos segundos, simulando que el sistema está preparando el préstamo del libro.
+    
+    Manejo de errores: Si el libro no se encuentra en la biblioteca o no está disponible, 
+    el sistema debe mostrar un mensaje de error específico.
+    
+    Mensaje final: Independientemente de si el préstamo fue exitoso o no,
+     el sistema debe mostrar un mensaje indicando que el proceso de préstamo ha finalizado.*/
 
 
 
