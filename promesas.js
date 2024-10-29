@@ -44,72 +44,72 @@
 // });
 
 //asincronismo : multiples tareas al mismo tiempo sin bloquear ningun flujo del programa
-function obtenerProducto(productoId){
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            console.log("obtener detalle del producto");
-            const producto = {id: productoId, nombre: "portatil", precio: 15000}
-            if(producto){
-                resolve(producto);
-            }else{
-                reject("producto no encontrado")
-            }
+// function obtenerProducto(productoId){
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             console.log("obtener detalle del producto");
+//             const producto = {id: productoId, nombre: "portatil", precio: 15000}
+//             if(producto){
+//                 resolve(producto);
+//             }else{
+//                 reject("producto no encontrado")
+//             }
 
-        }, 5000);// 5 segundos
-    });
-}
-function verificarStock(producto){
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
+//         }, 5000);// 5 segundos
+//     });
+// }
+// function verificarStock(producto){
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
             
-        console.log("verificar producto:",producto.nombre)
-        const enStock = Math.random() > 0.5
-        if(enStock){
-            resolve("producto en stock")
-        }else{
-            reject("producto fuera de stock")
-        }
-    },3000);
-});
-}
+//         console.log("verificar producto:",producto.nombre)
+//         const enStock = Math.random() > 0.5
+//         if(enStock){
+//             resolve("producto en stock")
+//         }else{
+//             reject("producto fuera de stock")
+//         }
+//     },3000);
+// });
+// }
 
-function confirmarCompra(producto) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log("confirmar compra del producto",producto.nombre)
-            resolve("compra con exito");
-        }, 8000);
-});
-}
+// function confirmarCompra(producto) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             console.log("confirmar compra del producto",producto.nombre)
+//             resolve("compra con exito");
+//         }, 8000);
+// });
+// }
 
-function realizarCompra(productoId){
-    obtenerProducto(productoId)
-    .then((producto) =>{
-        return verificarStock(producto).then(() => producto)
-    })
-    .then((producto) => {
-        return confirmarCompra(producto);
-    })
-    .catch((mensaje) =>{
-        console.log(mensaje);
+// function realizarCompra(productoId){
+//     obtenerProducto(productoId)
+//     .then((producto) =>{
+//         return verificarStock(producto).then(() => producto)
+//     })
+//     .then((producto) => {
+//         return confirmarCompra(producto);
+//     })
+//     .catch((mensaje) =>{
+//         console.log(mensaje);
 
-    })
-    .catch((error) => {
-        console.error("error durante la comrpa",error);
-    })
+//     })
+//     .catch((error) => {
+//         console.error("error durante la comrpa",error);
+//     })
 
-    .finally(() => {
-        console.log("proceso completado")
-    });
-}
-realizarCompra(1)
+//     .finally(() => {
+//         console.log("proceso completado")
+//     });
+// }
+// realizarCompra(1)
 
 //----------------------------------------------------------------------------
 // console.log("inicio programa");//-----tarea 1
 // function prepararComida(pedido){
 //     return new Promise((resolve, reject) => {
 //         console.log("preparando el pedido.......");
-//         setTimeout(() => {
+//         setTimeout(() => {o el usuario ingresa el tít
 //            if(pedido === "pizza"){
 //                 resolve("pedido esta listo");
 //             }else{
@@ -141,7 +141,7 @@ realizarCompra(1)
     
     Eres desarrollador de una plataforma de biblioteca en línea. El sistema necesita ofrecer las siguientes funcionalidades:
     
-    Buscar un libro por título: Cuando el usuario ingresa el título de un libro, el sistema debe buscar en la base de datos de la biblioteca.
+    Buscar un libro por título: Cuandulo de un libro, el sistema debe buscar en la base de datos de la biblioteca.
      Este proceso debe simularse con una promesa que tarde unos segundos en resolverse.
     
     Verificar disponibilidad del libro: Después de encontrar el libro, el sistema debe verificar si está disponible para préstamo.
@@ -156,6 +156,74 @@ realizarCompra(1)
     Mensaje final: Independientemente de si el préstamo fue exitoso o no,
      el sistema debe mostrar un mensaje indicando que el proceso de préstamo ha finalizado.*/
 
+//buscar libro------------------------------------------------
+function buscarLibro(titulo){
+    return new Promise((resolve, reject) => {
+        console.log(`Buscar el libro ${titulo}...`);
+
+        setTimeout(() => {
+            const librosDisponibles = ["javascript", "Nodejs", "mongoDB", "react"];
+            if(librosDisponibles.includes(titulo)){
+                resolve(titulo);
+            }else{
+                reject(`lo siento. el libro ${titulo} no se encuentra en la biblioteca`);
+            }
+            
+        }, 3000);
+    })
+}
+//verificar disponibilidad-----------------------------------
+function verificarDisponibilidad(libro){
+    return new Promise((resolve, reject) => {
+
+        setTimeout(() => {
+            
+        const disponible = Math.random() > 0.5; //50% de probabilidad
+        if(disponible){
+            resolve(libro);
+        }else{
+            reject(`lo siento, el libro ${titulo} no esta disponible para prestamo`);
+        }
+    }, 2000);
+});
+}
+
+//prestamo del libro----------------------------------------
+function realizarPrestamo(libro){
+    return new Promise((resolve, reject) => {
+        console.log(`Realizando prestamo del libro ${libro}....`);
+
+        setTimeout(() => {
+        resolve(`Prestamo completado exitosamente para el libro ${libro}.`) ;
+        }, 1000);
+    });
+}
+
+//-------Gestionar prestamo--------------
+function gestionarPrestamo(titulo){
+    buscarLibro(titulo)
+    .then((libro) => {
+        return verificarDisponibilidad(libro);
+    })
+
+    .then((librosDisponibles) => {
+        return realizarPrestamo(librosDisponibles);
+    })
+
+    .then((mensajeExitoso) => {
+        console.log(mensajeExitoso);
+    })
+
+    .catch((error) => {
+        console.error(error)// captura el error derante el proceso
+    })
+    
+    .finally(() => {
+        console.log("proceso de prestamo finalizado");
+    });
+}
+
+gestionarPrestamo("next");
 
 
 

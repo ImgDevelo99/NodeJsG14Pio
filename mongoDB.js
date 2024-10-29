@@ -41,3 +41,36 @@
 *eliminar un documento: db.nombre_de_la_coleccion.deleteOne({campo: "valor"});
 *eliminar multiples doc: db.nombre_de_la_coleccion.deleteMany({edad:{$lt:10} });//  $lt(menor que)                                     
 */
+
+//----------------------------CLUSTER-------------------------------------------
+/*
+contexto de bd es un conjunto de servidores o instacioas, se trabaja en conjunto para proporcionar disponibilidad,
+escalabilidad del sistema o de la aplicacion,nos permite distribuir datos en varios nodos, nos ayuda a manejar
+grandes volumenes de datos.
+
+1. alta disponibilidad
+2. Escalabilidad
+3. Distribuicion geografica
+4. tolerancia a fallos
+
+---------cluster mongodb----
+1. replica set (conjunto de replicas)
+2. sherded cluster (particionamiento)
+3. cluster en mongodb atlas
+
+ventajas
+1. mayor confiabilidad
+2.mejor rendimiento
+3. flexibilidad
+
+-----------MONGODB ATLAS-----------------------
+Es una plataforma de bd en la nube ofrecida por mongodb. la infraestructura de nube como(AWS, Azure, GCP )
+
+1. Almacenamiento y gestion de BD en la nuve
+2. escalabilidad automatica
+3. segurida avanzada
+4. monitoreo y administracion automatizada
+5.  herramientas de analisis
+
+
+*/
