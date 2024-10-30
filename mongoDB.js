@@ -1,5 +1,6 @@
 /*
 1- Comandos para gestion de base de datos NoSql
+* db.Productos.find(); // devuelve todos los documentos.
 *listar bd : show dbs
 *cambiar la bd : use (nombre de la bd que quiero utilizar)
 *mstrar bd actual : db
@@ -72,5 +73,36 @@ Es una plataforma de bd en la nube ofrecida por mongodb. la infraestructura de n
 4. monitoreo y administracion automatizada
 5.  herramientas de analisis
 
+----------------comandos de consulta y filtrado-----------------------------
+1. operadores de comparacion
+    db.nombreColeccion.find({ campo : {$gt: valor }}) // mayor que
+    db.nombreColeccion.find({ campo : {$lt: valor }}) // menor que
+    db.nombreColeccion.find({ campo : {$eq: valor }}) // igual a
+    db.nombreColeccion,find({ edad : {$ne: 10 }}) //Distinto de
 
+2. operadores logicos----------------
+    db.nombreColeccion.find({ $and : [{campo1 : valor1} , {campo2 : valor2 }]})  V and V = V
+    db.nombreColeccion.find({ $or : [{campo1 : valor1} , { campo2 : valor2 }]})  V or f = v                   
+
+3.uso de expresiones regulares-----------
+    db.nombreColeccion.find({ campo : /valor /}) // busca un texto que contega "valor"
+
+
+------TALLER PRACTICO 1----------------
+    use Tienda;
+    db.createCollection("Productos");
+    db.Productos.insertMany([
+    { nombre: "Laptop", precio: 1200, cantidad: 50 },
+    { nombre: "Teclado", precio: 50, cantidad: 200 },
+    { nombre: "Ratón", precio: 25, cantidad: 300 }
+    ]);
+1. Lee todos los documentos en la colección "Productos" donde la cantidad sea mayor a 100.
+    db.Productos.find({ cantidad: { $gt: 100 } });
+2. Actualiza el precio de todos los productos cuyo precio sea menor a 5000, incrementándolo en un 10%.
+    db.Productos.updateMany(
+    { precio: { $lt: 100 } },
+    [{ $set: { precio: { $multiply: ["$precio", 1.1] } } }]
+    );
+3. Elimina todos los productos cuyo nombre sea "Arroz".
+    
 */
