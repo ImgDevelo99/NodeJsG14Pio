@@ -105,4 +105,27 @@ Es una plataforma de bd en la nube ofrecida por mongodb. la infraestructura de n
     );
 3. Elimina todos los productos cuyo nombre sea "Arroz".
     
+-----------Comandos de proyeccion y ordenamientos-----------------------------
+1.seleccionar campos especificos en el resultado
+    db.nombreColeccion.find({}, {campo1 : 1, campo2: 1, _id: 0})
+
+2. Ordenar documento
+    db.nombreColeccion.find().sort({ campo: 1}) // Ascendente
+    db.nombreColeccion.find().sort({ campo: -1}) // descentente
+
+3.Limitar y saltar documento
+    db.nombreColeecion.find().limit(5)
+    db.nombreColeccion.find().skip(10) //es unmetodo pra omitir un numero de documento al realizar la consulta
+    
+-----------comando de agregacion------------------------------------    
+1.uso de operadores $match para filtrar documentos
+    db.nombreColeccion.aggregate([{ $match: { campo: "valor" }}])
+
+2.uso de operador $group para agrupar documento:
+    db.nombreColeccion.aggregate([{ $group: {_id: "$campoAgrupar", total:{$sum: 1 }}}])    
+    
+3.uso de $project para seleccionar campos
+    db.nombreColeccion.aggregate([{ $project: { campo1: 1, campo2: 0 }}])   
+    
+    
 */
