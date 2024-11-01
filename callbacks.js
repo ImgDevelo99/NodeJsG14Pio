@@ -119,6 +119,21 @@ enviarMensaje(2, "hola este mensaje es de prueba ", (err, resultado) => {// llam
 3. simula un proceso de descarga de archivos desde internet, con tres pasos: verificar la conexión, 
  descargar el archivo y notificar el final de la descarga.
 
-4. 
+4.  Enunciado del Ejercicio
+Sistema de Gestión de Tareas
+
+Imagina que estás desarrollando un sistema simple de gestión de tareas que permite a los usuarios agregar, listar y completar tareas. Implementa las siguientes funciones utilizando callbacks:
+
+Agregar Tarea: Crea una función agregarTarea(titulo, callback) que acepte el título de una nueva tarea y un callback. La función debe simular la adición de la tarea a una lista (puedes usar un array como base de datos) y llamar al callback con un mensaje indicando que la tarea se ha agregado correctamente. Si el título de la tarea está vacío, el callback debe recibir un error.
+
+Listar Tareas: Crea una función listarTareas(callback) que acepte un callback. Esta función debe simular la obtención de la lista de tareas y llamará al callback con la lista de tareas. Si no hay tareas, debe llamar al callback con un mensaje indicando que no hay tareas disponibles.
+
+Completar Tarea: Crea una función completarTarea(titulo, callback) que acepte el título de la tarea a completar y un callback. Esta función debe buscar la tarea en la lista y marcarla como completada. Si la tarea no se encuentra, el callback debe recibir un error; si se completa con éxito, debe llamar al callback con un mensaje de confirmación.
+
+Ejemplo de Uso:
+
+Agregar tareas a la lista.
+Listar las tareas existentes.
+Completar una tarea existente y listar nuevamente las tareas.
 */
 

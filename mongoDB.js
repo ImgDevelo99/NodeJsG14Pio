@@ -127,5 +127,19 @@ Es una plataforma de bd en la nube ofrecida por mongodb. la infraestructura de n
 3.uso de $project para seleccionar campos
     db.nombreColeccion.aggregate([{ $project: { campo1: 1, campo2: 0 }}])   
     
+-------Comandos administracion de BD y colecciones------------    
+1. Eliminar una coleccion
+    db.nombrecoleccion.drop()
+
+2. eliminar bd
+    db.dropDatabase()
+    
+---------------Comando de indices-------
+1.crear un indice en un campo
+    db.nombrecoleccion.create.Index({ campo : 1})
+
+2.  db.nombrecoleccion.getIndexes()      
+
+3.  db.nombrecoleccion.dropIndex("nombre del indice")
     
 */
