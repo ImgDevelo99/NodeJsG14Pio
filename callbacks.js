@@ -121,7 +121,6 @@ enviarMensaje(2, "hola este mensaje es de prueba ", (err, resultado) => {// llam
 
 4.  Enunciado del Ejercicio
 Sistema de Gestión de Tareas
-
 Imagina que estás desarrollando un sistema simple de gestión de tareas que permite a los usuarios agregar, listar y completar tareas. Implementa las siguientes funciones utilizando callbacks:
 
 Agregar Tarea: Crea una función agregarTarea(titulo, callback) que acepte el título de una nueva tarea y un callback. La función debe simular la adición de la tarea a una lista (puedes usar un array como base de datos) y llamar al callback con un mensaje indicando que la tarea se ha agregado correctamente. Si el título de la tarea está vacío, el callback debe recibir un error.
@@ -131,9 +130,94 @@ Listar Tareas: Crea una función listarTareas(callback) que acepte un callback. 
 Completar Tarea: Crea una función completarTarea(titulo, callback) que acepte el título de la tarea a completar y un callback. Esta función debe buscar la tarea en la lista y marcarla como completada. Si la tarea no se encuentra, el callback debe recibir un error; si se completa con éxito, debe llamar al callback con un mensaje de confirmación.
 
 Ejemplo de Uso:
-
 Agregar tareas a la lista.
 Listar las tareas existentes.
 Completar una tarea existente y listar nuevamente las tareas.
 */
 
+// Simulamos una base de datos de tareas
+let tareas = [];
+
+// Función para agregar una tarea
+function agregarTarea(titulo, callback) {
+    if (!titulo) {
+        const error = new Error("El título de la tarea no puede estar vacío.");
+        return callback(error);
+    }
+
+    const nuevaTarea = { titulo, completada: false };
+    tareas.push(nuevaTarea);
+    callback(null, `Tarea agregada: "${titulo}"`);
+}
+
+// Función para listar las tareas
+function listarTareas(callback) {
+    if (tareas.length === 0) {
+        return callback("No hay tareas disponibles.");
+    }
+    callback(null, tareas);
+}
+
+// Función para completar una tarea
+function completarTarea(titulo, callback) {
+    const tarea = tareas.find(tarea => tarea.titulo === titulo);
+    if (!tarea) {
+        const error = new Error(`Tarea "${titulo}" no encontrada.`);
+        return callback(error);
+    }
+    
+    tarea.completada = true;
+    callback(null, `Tarea completada: "${titulo}"`);
+}
+
+// Ejemplo de uso
+
+// Agregamos algunas tareas
+agregarTarea("Aprender JavaScript", (err, mensaje) => {
+    if (err) {
+        return console.log(err.message);
+    }
+    console.log(mensaje);
+
+    // Listar tareas después de agregar
+    listarTareas((err, lista) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("Lista de tareas:", lista);
+
+        // Completar una tarea
+        completarTarea("Aprender JavaScript", (err, mensaje) => {
+            if (err) {
+                return console.log(err.message);
+            }
+            console.log(mensaje);
+
+            // Listar tareas nuevamente
+            listarTareas((err, lista) => {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log("Lista de tareas después de completar:", lista);
+            });
+        });
+    });
+});
+
+// Intentar agregar una tarea sin título
+agregarTarea("", (err, mensaje) => {
+    if (err) {
+        console.log(err.message);
+    } else {
+        console.log(mensaje);
+    }
+});
+
+// Intentar completar una tarea que no existe
+completarTarea("Tarea que no existe", (err, mensaje) => {
+    if (err) {
+        console.log(err.message);
+    } else {
+        console.log(mensaje);
+    }
+});
