@@ -141,5 +141,24 @@ Es una plataforma de bd en la nube ofrecida por mongodb. la infraestructura de n
 2.  db.nombrecoleccion.getIndexes()      
 
 3.  db.nombrecoleccion.dropIndex("nombre del indice")
-    
+
+-----------operadores de Comparacion------------------------------
+1. $eq : selecciona documentos donde el valor del campo es igual al valor especifico
+    db.nombreColeccion.find({ campo : {$eq: valor }})
+2. $ne: selecciona documentos donde el valor de un campo es diferente al valor especificado 
+    db.nombreColeccion.find({ campo : { $ne : valor }})
+3. $gt: selecciona documentos donde el valor de un campo es mayor que el valor especificado
+    db.nombreColeccion.find({ campo : { $gt : valor }})     
+4. $lt: seleciona documentos donde el valor de un campo es menor que el valor especificado
+    db.nombreColeccion.find({ campo : { $lt : valor }})
+5. $lte: selecciona documentos donde el valor de un campo es menor o igual al valor especificado 
+    db.nombreColeccion.find({ campo : { $lte : valor }})
+6. $in: selecciona documentos donde el valor de un campo esta en una lista de valores.
+    db.nombreColeccion.find({ campo : { $in : [valor1, valor2, valor3] }})
+7. $nin: seleciona documentos donde el valor de un campo no esta en una lsita de valores
+    db.nombreColeccion.find({ campo : { $nin : [valor1, valor2, valor3] }})
+8. $gte: selecciona documentos donde el valor de un campo es mayor o igual que
+    db.nombreColeccion.find({ campo : { $gte : valor }})
+
+
 */
