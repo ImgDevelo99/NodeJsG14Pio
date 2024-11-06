@@ -161,5 +161,20 @@ Es una plataforma de bd en la nube ofrecida por mongodb. la infraestructura de n
     db.nombreColeccion.find({ campo : { $gte : valor }})
 
 ------------------Operadores logico-------------   
+1. $and : combina varias condiciones,donde deben de ser verdaderas para seleeccionar el documento
+    db.nombrecoleccion.find({ $and: [{campo1: valor1}, {campo2 : valor2 }]})
+2. $or :  combina varias condiciones, al menos una debe ser verdadera para seleccionar un documento
+    db.nombreColeccion.find({ $or [{ campo1 : valor1 }, {campo2 : valor2 }]})
+3. $not : seleccion documentos que no cumplan con la condicion especifica.
+    db.nombrecoleccion.find({ campo : { $not : { $gte : valor } } } )
+4. $nor : selecciona documentos donde ninguna de las condiciones es verdadera
+    db.nombrecoleccion.find({ $nor: [{campo1: valor1}, {campo2 : valor2}]})
+
+-------------- Operadores de elementos.-------------
+ operadores que permiten verificar la existencia de un campo y su tipo
+1.$exists: seleciona documentos si un campo existe o no
+    db.nombrecoleccion.find({campo : { $exists : true } })
+2.$type: selecciona documentos si el valor de un campo es de un tipo especifico
+    db.nombrecoleccion.find({ campo : { $type: "string" } })
 
 */
