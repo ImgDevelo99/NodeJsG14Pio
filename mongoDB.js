@@ -160,5 +160,6 @@ Es una plataforma de bd en la nube ofrecida por mongodb. la infraestructura de n
 8. $gte: selecciona documentos donde el valor de un campo es mayor o igual que
     db.nombreColeccion.find({ campo : { $gte : valor }})
 
+------------------Operadores logico-------------   
 
 */
