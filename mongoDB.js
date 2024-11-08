@@ -177,4 +177,39 @@ Es una plataforma de bd en la nube ofrecida por mongodb. la infraestructura de n
 2.$type: selecciona documentos si el valor de un campo es de un tipo especifico
     db.nombrecoleccion.find({ campo : { $type: "string" } })
 
+------------- operadores de array------------------
+1. $all : selecciona documentos donde un campo de tipo array contiene todos los elementos especificos.
+    db.nombrecoleccion.find({ campoArray : { $all : [valor1, valor2 ] } })
+2. $elemMatch : selecciona documentos si al menos un elemento del array cumple con todas las condiciones especificas
+    db.nombrecoleccion.find({ campoArray: { $elemMatch : {  campoInterno : valor } } })
+3. $size :selecciona documentos donde un campo array tiene un numero especifico de elemento.
+    db.nombrecoleccion.find({ campoArray : { $size : 3 } })
+
+----------consultas avanzadas paipline de agregacion-------------------------------
+se utiliza para hacer consultas avanzadas nos permite trasnformar y analizaar los datos, 
+funciona mediante etapas o fases(pipes) podemos aplicar filtros, agrupamientos, calculos
+$match, $group, $sort.
+
+db.ventas.insertMany([
+  {
+    producto: "Laptop",
+    cantidad: 10,
+    precio_unitario: 1500,
+    fecha_venta: ISODate("2023-09-01T00:00:00Z"),
+    categoria: "Electrónica"
+  },
+
+    {
+    producto: "Silla",
+    cantidad: 20,
+    precio_unitario: 100,
+    fecha_venta: ISODate("2023-08-30T00:00:00Z"),
+    categoria: "Muebles"
+  },
+
+  ISOdate : es un tipo de dato en mongodb  para representar fecha en formato universal UTC
+  Z: que el tiempo esta en zona horaria UTC
+
+
+
 */

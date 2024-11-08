@@ -1,0 +1,11 @@
+{
+  "name": "proyectocalculadora",
+  "version": "1.0.0",
+  "description": "primer proyecto node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Diego",
+  "license": "ISC"
+}
