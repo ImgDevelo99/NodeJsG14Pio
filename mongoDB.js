@@ -210,6 +210,26 @@ db.ventas.insertMany([
   ISOdate : es un tipo de dato en mongodb  para representar fecha en formato universal UTC
   Z: que el tiempo esta en zona horaria UTC
 
-
+1. obtener el total de ventas ( suma de cantidad * precio_unitario) para cada categoria de productos, pero solo las ventas
+realizadas despues del 1 de septiembre del 2023.
 
 */
+db.ventas.aggregate([
+    {$match: { fecha_venta: { $gte: ISODate("2023-09-01T00:00:00Z") } } },
+    {$group: { _id: "$categoria", totalVentas: {$sum: { $multiply: [ "$cantidad", "$precio_unitario"] } } } },
+    {$sort: { totalVentas: -1}}
+]);
+
+//obtener la cantidad total de productos vendidos por cada categoria y calcular el promedio de precio unitario en cada una de ellas.
+db.ventas.aggregate([
+    {
+        $group:{
+            _id : "$categoria",
+            totalCantidadVendida:{$sum: "$cantidad"},
+            promedioPrecioUnitario: {$avg: "$precio_unitario"}
+        }
+    },
+    {$sort: { totalCantidadVendida: -1}}
+]);
+
+//obtener la fecha de la venta mas reciente y las mas antigua para cada categoria,?
