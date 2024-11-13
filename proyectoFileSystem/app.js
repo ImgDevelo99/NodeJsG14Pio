@@ -36,6 +36,7 @@
 //importar el modulo fs y el modulo path = para rutas
 // import fs from 'fs';
 const fs =  require('fs');
+const { console } = require('inspector');
 const path = require('path');
 
 //definir la ruta completa del archivo para que se guarde
@@ -80,7 +81,106 @@ function listarProductos(){
     console.log("lista de productos",productos);
 }
 
-agregarProducto("telefono", 500000);
-agregarProducto("portatil", 23000);
-agregarProducto("audifonos", 12000);
-listarProductos();//listar todos los producto
+//funcion actualizar ID
+function actualizarProducto(id, nuevoProducto, nuevoPrecio ){
+    const productos = leerProducto();
+    //busca el indice del producto con el id
+    const productoIndex = productos.findIndex(producto => producto.id === id );
+
+    if (productoIndex === -1){
+        console.log("producto no encontrado");
+        return;
+    }
+        //vamos actualizar el nombre y el precio del producto encontrado
+
+    //me actualiza los datos del producto que se encuentran en la posicion producto index
+    productos[productoIndex] = {...productos[productoIndex], nombre: nuevoProducto, precio: nuevoPrecio}; //operador propagacion y luego sobreescribe
+    escribirProducto(productos);
+    console.log("producto actualizado", productos[productoIndex]);
+}
+//eliminar por id----------------------------------------------------
+function eliminarProducto(id){
+    let productos = leerProducto(); // cargar los productos
+    const productosActualizados = productos.filter(producto => producto.id !== id)//filtra
+
+    if(productos.length === productosActualizados.length){//verifica si el numero de elemntos en productos es igual a productos actualizados
+        console.log("producto no encontrado");
+        return
+    }
+    escribirProducto(productosActualizados);// guardar el array filtrado
+    console.log(`producto con ID ${id} eliminado`) // el producto eliminado
+}
+// agregarProducto("telefono", 500000);
+// agregarProducto("portatil", 23000);
+// agregarProducto("audifonos", 12000);
+// listarProductos();//listar todos los producto
+// actualizarProducto(1731463675538, "microfono", 60000)//intenta actualizar  el producto con ID 1 (si existe)
+    eliminarProducto(1731463675542);
+    listarProductos();//listar todos los producto
+
+    /*
+    usa el módulo fs para administrar un directorio y realizar operaciones avanzadas en archivos de texto, 
+    como leer y copiar todos los archivos que contienen una palabra específica en una carpeta separada. 
+    Esta operación es útil en casos como la organización de archivos o la clasificación de documentos 
+    que contienen ciertas palabras clave.
+    */
+//    // Importa el módulo 'fs' para trabajar con el sistema de archivos
+// const fs = require('fs');
+// // Importa el módulo 'path' para manejar rutas de archivos de manera segura
+// const path = require('path');
+
+// // Define la palabra que queremos buscar dentro de los archivos
+// const palabraClave = 'importante';
+
+// // Define la carpeta origen donde se encuentran los archivos a revisar
+// const carpetaOrigen = path.join(__dirname, 'archivos');
+
+// // Define la carpeta destino donde se copiarán los archivos que contengan la palabra clave
+// const carpetaDestino = path.join(__dirname, 'contienePalabra');
+
+// // Verifica si la carpeta destino existe, y si no, la crea
+// if (!fs.existsSync(carpetaDestino)) {
+//     fs.mkdirSync(carpetaDestino);
+// }
+
+// // Lee el contenido de la carpeta origen
+// fs.readdir(carpetaOrigen, (err, archivos) => {
+//     if (err) {
+//         return console.error("Error al leer la carpeta origen:", err.message);
+//     }
+
+//     // Itera sobre cada archivo encontrado en la carpeta origen
+//     archivos.forEach(archivo => {
+//         const rutaArchivo = path.join(carpetaOrigen, archivo); // Obtiene la ruta completa del archivo
+
+//         // Verifica si es un archivo y no una subcarpeta
+//         fs.stat(rutaArchivo, (err, stats) => {
+//             if (err) {
+//                 return console.error("Error al obtener estadísticas del archivo:", err.message);
+//             }
+
+//             // Solo procesa el archivo si es un archivo regular
+//             if (stats.isFile()) {
+//                 // Lee el contenido del archivo
+//                 fs.readFile(rutaArchivo, 'utf8', (err, contenido) => {
+//                     if (err) {
+//                         return console.error("Error al leer el archivo:", err.message);
+//                     }
+
+//                     // Verifica si el contenido del archivo contiene la palabra clave
+//                     if (contenido.includes(palabraClave)) {
+//                         const rutaDestino = path.join(carpetaDestino, archivo); // Define la ruta de destino del archivo
+
+//                         // Copia el archivo a la carpeta destino
+//                         fs.copyFile(rutaArchivo, rutaDestino, (err) => {
+//                             if (err) {
+//                                 return console.error("Error al copiar el archivo:", err.message);
+//                             }
+//                             console.log(`Archivo "${archivo}" copiado a "${carpetaDestino}" porque contiene la palabra "${palabraClave}".`);
+//                         });
+//                     }
+//                 });
+//             }
+//         });
+//     });
+// });

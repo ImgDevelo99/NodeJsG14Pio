@@ -233,3 +233,47 @@ db.ventas.aggregate([
 ]);
 
 //obtener la fecha de la venta mas reciente y las mas antigua para cada categoria,?
+db.ventas.aggregate([
+    {
+    $group:{
+        _id: "$categoria",
+        primeraVenta:{$min: "$fecha_venta"},
+        ultimaVenta:{$max: "$fecha_venta"},
+    }
+    },
+    { $sort: {_id: 1 }}
+]);
+
+//obtener el ingreso total mensual 
+//y el numero de productos vendidos por cada categoria en cada mes, 
+//tambien calcular el promedio de los productos vendidos por mes y categoria.
+
+db.ventas.aggregate([
+    {
+        $group:{
+            _id:{
+                categoria: "$categoria",
+                mes: {$month: "$fecha_venta"},
+                anio: {$year: "$fecha_venta"},
+            },
+            totalIngreso: {$sum: {$multiply: ["$cantidad", "$precio_unitario"]} },
+            totalCantidadVendida: { $sum: "$cantidad"},
+            promedioPrecioUnitario: {$avg: "$precio_unitario"}
+        }
+    },
+    {$sort: {"_id.anio": 1, "_id.mes": 1, "_id.categoria": 1}}
+]);
+
+//-----------------------INDICES MONGODB ----------------------------------------------
+/* Son estructuras de datos que mejoran la velocidad de las consultas en una coleccion, se evita que mongoDB
+tenga que recorrer todos los documentos para encontrar coicidencias. Los indices se crean en campos
+especificos de una coleccion y permite optimizar las busquedas.
+
+1. Indice de campo unico = se crea en un solo campo de la coleccion
+2. Indice compuesto =  un indice compuesto incluye varios campos y es util para consultas que dependan de varias condiciones
+3. Indice de texto = se utilizan para realizar busquedas de texto completo en campos de tipo cadena.
+4. Indice de geolocalizacion = facilita busquedas relacionadas con la ubicacion.
+5. Indice parcial = crea un indice en un subconjunto  de documento que cumplan ciertos criterios
+    ejemplo: indexar solo los documentos con stock mayor a 0.
+6. Indice TTL (Time to live) = elimina automaticamente despues de un tiempo en especifico. util para colecciones con datos temporales    
+ */
