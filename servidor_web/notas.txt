@@ -1,0 +1,90 @@
+1 creamos un proyecto mkdir servidor_web
+2. nos ubicamos en la carpeta proyecto cd servidor_web
+3.npm init -y
+
+NODE.JS --------------------------------------------
+1.Express.js: framework para aplicaciones web en node.js facilita la creacion de servidores, manejo de rutas
+    middleware. https://expressjs.com/
+
+2. nodemon :reinicia automaticamente la aplicacion cuando detecta cambios en el codigo.
+
+3. Mongoose: biblioteca para modelar datos en mongoDB, simplificar la manipulacion y nos permite crear modelos para esquemas de mongoDB
+
+4.dotenv : permite cargar variables de entorno desde un archivo .env. lo cual es util para almacenar credenciales y configuraciones.
+
+5.jsonwebtoken (jwt): utilizada para manejar autenticaciones basadas en token JWT, util para proteger rutas y datos en la apliacion
+    con login.
+6.bcrypt : biblioteca para encriptar contraseñas,  
+
+7. middleware: es un bloque de codigo q actua como interemediario en el flujo de procesamiento de solicitudes y respuestas en la 
+    aplicacion, en el servidor. (request o response)
+
+REACT :  es una biblioteca de js para construir interfaces de usuaio.------------------------------------------
+
+1. react router: libreria para manejar la navegacion en aplicaciones de una sola pagina.
+
+2.Redux o Context API : herramienta para el manejo de estados globales en la aplicacion
+
+3.Axios o Fetch : biblioteca para realizar peticiones HTTP.  facilita hacer solicitudes a la API y manejar respuestas, 
+    FETCH : es la API nativa de js para realizar peticiones  HTTP
+
+4.Styled components o CSS Modular:  herramienta para trabajar con  estilos en react, permite escribir css en js, mientras Css modular:
+    ayuda a mantener el alcance de los estilos locales.
+
+5. react Testing Library y Jest :  herramienta para pruebas. unitarias, de integracion, de componentes, logicas etc.  
+
+MONGODB-------------------------------------------------------------------------
+1.MongoDB Compass: interfaz grafica nos permite visualizar y manejar la bd o local o en la nube
+
+2.Mongoose : es el contexto de node.js me permite interactuar con mongoDB,
+
+3.Mongo Atlas: servicio de bd en la nube,  facilita la gestion de bd sin preocuparce por la infraestructura.
+
+4.Robo 3T:  herramienta grafica  para gestionar base de datos MongoDB.
+
+
+-------------codigos de estado en HTTP---------------------------
+CODIGO DE EXITO--------------------------
+
+200 : OK = indica que una solicitud  GET o POST se ha procesado con exito 
+201 : Created = solicitudes POST se crea un nuevo recurso
+204 : No conect = es una respuesta a la solicitud PUT o DELETE cuando se completo correctamente
+
+CODIGO DE REDIRECCION-----------------------------
+
+301:se usa para redirecciones permanentes
+302: found = redirecciones temporales.
+304: Not Modified=  se utiliza para la gestion de cache
+
+CODIGO DE ERROR CLIENTE-------------------------------
+
+400: Bad request =  indica que hay un error de sintaxis en la solicitud.
+401: unauthorized = no autenticado o autentico pero fallo
+403: forbidden = indica que el server a rechazado la solicitud
+404: Not found = indica que el recurso solicitado no existe en el servidor
+
+CODIGO DE ERROR SERVIDOR---------------------------------
+
+500 internal server error: indica un error en el servidor impide completar la solicitud
+502 bad gateway: cuando un servidor que actua como proxy recibe una respuesta invalida.
+504 gateway Timeout : cuando se realiza la peticion  hay mucho tiempo de espera
+
+-----------METODOS DE PETICIONES HTTP------------------
+1. GET : obtener o recuperar  datos de un recurso especifico en el servidor
+2. POST : Envia datos al servidor para crear un nuevo recurso o procesar informacion.
+3. PUT : actualizar completamente un recurso del servidor.
+4. DELETE: Elimina un recurso especifico en el servidor.
+5. PATCH : realiza una actualizacion parcial de un recurso.
+
+ PUT
+{
+    "nombre": "juan",
+    "telefono": "131413431",
+    "email": "juan@gmail.com"
+}
+
+PATCH
+{
+    "email": "admin@gmail.com",
+}
+

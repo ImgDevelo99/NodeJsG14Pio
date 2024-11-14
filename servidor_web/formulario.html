@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Formuario de contacto</h1>
+    <form action="/submit" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required>
+        <br><br>
+        <label for="email">Correo Electronico</label>
+        <input type="email" name="email" required>
+        <br><br>
+        <label for="mensaje">Mensaje:</label>
+        <textarea name="mensaje" id="" rows="4" required></textarea>
+        <br><br>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
