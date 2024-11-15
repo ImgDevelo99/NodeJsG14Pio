@@ -58,7 +58,7 @@ fs.readFile('formulario.html', (err,data) => { //lectura y envio del archivo
     res.writeHead(200, {'Content-type': 'text/plain'});
     res.end('el formulario se envio correctamente');
     });
-    
+
 
 }else{
     res.writeHead(404, {'Content-type': 'text/plain'});
