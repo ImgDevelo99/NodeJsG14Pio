@@ -26,7 +26,7 @@ app.post('/submit', (req, res) => {
     //accede a los datos enviados en el formulario
     const datosFormulario = req.body;
     console.log("datos recibidos ",datosFormulario);
-    res.end("formulario enviado correctamente");
+    res.end("formulario enviado con exito");
 });
 
 app.listen(PORT, () => {
