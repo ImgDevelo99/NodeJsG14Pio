@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+    <h1>Gestion de usuarios</h1>
+
+    <form id="user-form">
+        <input type="number" id="user-id" placeholder="ID usuario" required>
+        <input type="text" id="user-name" placeholder="Nombre de usuario" required>
+        <input type="text" id="user-role" placeholder="Rol de usuario" required>
+        <button type="submit"> Guardar</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Rol</th>
+            </tr>
+        </thead>
+        <tbody id="user-list"></tbody>
+    </table>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
