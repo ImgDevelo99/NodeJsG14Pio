@@ -1,0 +1,21 @@
+1. creamos una carpeta del proyecto
+2. npm vite@latest nombre_del_proyecto
+3. seleccionamos react
+4. javascript + swc
+5. cd vamos a la carpeta del proyecto (nombre_del_proyecto)
+6. npm install
+7.npm run dev
+-----------------------------------------------------------------
+ESTRUCTURA DE CARPETAS
+1.node_module
+    todas las dependencias y bibliotecas
+2.Public
+     archivos estaticos accesibles directamente en el navegador
+3.index.html
+    archivo principal donde react monta la aplicacion.tiene un id= "root" que actua como el punto de entrada 
+4.main
+    punto de entrada de la apliacion. renderiza el componente principal(app) en DOM        
+5.app.jsx
+    componente principal que organiza la apliacion  
+
+JSX = es una aextencion de js que me permite escribir codigo similar a HTML dentro de js.        
