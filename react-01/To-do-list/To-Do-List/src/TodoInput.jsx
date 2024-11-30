@@ -1,5 +1,6 @@
 import { useState } from 'react'
-/* eslint-disable react/prop-types */
+// /* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 
 function TodoInput ({ addTask}) {//se utiliza desestructuracion de props para extraer directamente la funcion addTask
     const [inputValue, setInputValue] = useState('');//  estado para almacenar el texto ingresado
@@ -19,8 +20,12 @@ function TodoInput ({ addTask}) {//se utiliza desestructuracion de props para ex
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}//actualiza el estado con el texto ingresado
         />
-        <button type='submit'>Agregar</button>
+        <button className='boton' type='submit'>Agregar</button>
         </form>
     )
+};
+//validacion de porps con propTypes
+TodoInput.propTypes = {
+    addTask: PropTypes.func.isRequired, 
 };
 export default TodoInput;
