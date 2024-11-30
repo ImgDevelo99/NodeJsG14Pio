@@ -1,4 +1,0 @@
-1. App =componente principal
-2. TodoList = muestre lista de tareas
-3. TodoItem = Representa una tarea individual
-4. TodoInput = agregar tareas nueva

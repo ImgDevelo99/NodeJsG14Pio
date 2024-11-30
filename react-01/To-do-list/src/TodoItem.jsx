@@ -1,4 +1,5 @@
-
+/* eslint-disable no-unused-vars */
+import React from 'react';
 import PropTypes from 'prop-types'; //la mejor solucion es importar y definir las validaciones en el componente
 
 function TodoItem({ task, toggleTask, deleteTask }) {

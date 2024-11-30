@@ -1,0 +1,106 @@
+/* Estilo general de la aplicación */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f4f8; /* Fondo suave */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Contenedor principal de la aplicación */
+div {
+  background-color: #ffffff; /* Fondo blanco para el contenedor */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+  padding: 20px;
+ 
+}
+
+/* Estilo del título */
+h1 {
+  text-align: center;
+  color: #333; /* Color de texto oscuro */
+  margin-bottom: 20px;
+}
+
+/* Estilo del formulario de entrada */
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Estilo del input de texto */
+input[type="text"] {
+  flex: 1; /* Toma todo el espacio disponible */
+  padding: 10px;
+  border: 2px solid #ccc; /* Borde sutil */
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+}
+
+/* Estilo de los botones */
+button {
+  padding: 10px 10px;
+  background-color: #28a745; /* Verde brillante */
+  color: #fff; /* Texto blanco */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s; /* Transición para efectos de interacción */
+}
+
+button:hover {
+  background-color: #218838; /* Verde más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Efecto de aumento */
+}
+
+/* Estilo de la lista de tareas */
+ul {
+  list-style-type: none; /* Eliminamos los puntos de la lista */
+  padding: 0;
+}
+
+/* Estilo de cada tarea */
+li {
+  background-color: #f9f9f9; /* Fondo claro */
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo del texto de la tarea */
+span {
+  font-size: 16px;
+  cursor: pointer;
+  transition: text-decoration 0.3s, color 0.3s;
+}
+
+/* Efecto de tarea completada */
+span.completed {
+  text-decoration: line-through; /* Línea de tachado */
+  color: #6c757d; /* Color gris claro */
+}
+
+/* Botón de eliminar */
+button.delete {
+  background-color: #dc3545; /* Rojo brillante */
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 10px 10px;
+  color: #fff;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button.delete:hover {
+  background-color: #c82333; /* Rojo más oscuro */
+  transform: scale(1.05);
+}
