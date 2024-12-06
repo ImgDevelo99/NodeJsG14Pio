@@ -1,0 +1,14 @@
+1. creamos el proyecto Node.js
+mkdir api-jwt
+
+2.installar las dependencias
+npm install --save-dev nodemon
+-reinicia automaticamente el servidor cada vez que se hacen cambios en el codigo
+
+3.npm install express jsonwebtoken bcryptjs body-parser dotenv
+-express: para construir aplicaciones web y aplis.
+-jsonwebtoken: para generar y verificar tokens jwt.
+-bcryptjs : cifras las contraseñas.
+-body-parser: middleware analizar el cuerpo de la solicitud en formato JSON.
+-dotenv : variables de entorno
+
