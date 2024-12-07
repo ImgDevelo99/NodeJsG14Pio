@@ -1,17 +1,17 @@
 const express = require('express');
-const {register, login, profile} = require('../controllers/authController.js');
-const {verifyToken} = require('../utils/jwt');// verifica la validez de un token
+const { register, login, profile } = require('../controllers/authController');
+const { verifyToken } = require('../utils/jwt');
 
 const router = express.Router();
 
-//ruta registro
+// Ruta para registro
 router.post('/register', register);
 
-//ruta login
-router.post('/login', login);// api/auth/login
+// Ruta para login
+router.post('/login', login);
 
-//ruta robtener el perfil
+// Ruta para obtener el perfil (requiere autenticación)
 router.get('/profile', verifyToken, profile);
 
-module.exports = router;// exportar el enrutador
+module.exports = router;
 

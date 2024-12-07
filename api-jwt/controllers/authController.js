@@ -42,5 +42,5 @@ exports.login = async (req, res) => {
 
 //controlador perfil
 exports.profile = (req, res) => {
-    res.json({ message: `Bienvenido ${req.username}`});
+    res.json({ message: `Bienvenido ${req.user.username}` });
 };

@@ -1,24 +1,24 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken'); // Importa la librería jsonwebtoken
 
-//middleware para verificar el token
+// Middleware para verificar el token
 exports.verifyToken = (req, res, next) => {
-    const tokenHeader = req.headers['authorization'];
-    console.log(tokenHeader);
+  const tokenHeader = req.headers['authorization'];
+  console.log('Token recibido:', tokenHeader); // Debug
 
-    if(!tokenHeader){
-        return res.status(403).json({message:'Token no proporcionado'});
-    } 
-    const token = tokenHeader.split('')[1]; // Bearer (token)
-    console.log('Token procesado:' , token)
+  if (!tokenHeader) {
+    return res.status(403).json({ message: 'Token no proporcionado' });
+  }
 
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);// verificar el token
-        console.log('Token decodificado: ', decoded);
-        res.user = decoded;
-        next();
-        
-    } catch (error) {
-        console.error('Error al verificar el token', error.message);
-        return res.status(401).json({message: ' token invalido'})
-    }
+  const token = tokenHeader.split(' ')[1]; // Extrae solo el token
+  console.log('Token procesado:', token); // Debug
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verifica el token
+    console.log('Token decodificado:', decoded); // Debug
+    req.user = decoded;
+    next();
+  } catch (error) {
+    console.error('Error al verificar el token:', error.message); // Debug
+    return res.status(401).json({ message: 'Token inválido' });
+  }
 };
